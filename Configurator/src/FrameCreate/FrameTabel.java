@@ -27,13 +27,13 @@ import Main.Main_JPanel;
  *
  * @author cherepanov
  */
-public class FrameTabel extends javax.swing.JPanel {
+public class FrameTabel extends Main_JPanel {
 
     Main_JPanel mj = new Main_JPanel();
 
     int filepath;
     String filepatch;
-    String signal;
+    
 
     XMLSAX createXMLSax = new XMLSAX();
 
@@ -132,28 +132,25 @@ public class FrameTabel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        getSignal();
-
-        JFileChooser fileload = new JFileChooser();
-        fileload.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        filepath = fileload.showOpenDialog(this);
-        if (filepath == JFileChooser.APPROVE_OPTION) {
-            try {
-                String filename = fileload.getSelectedFile().getName();
-
-                filepatch = fileload.getSelectedFile().getCanonicalPath();
-            } catch (IOException ex) {
-                Logger.getLogger(FrameTabel.class.getName()).log(Level.SEVERE, null, ex);//
-            }
-        }
-
+//        JFileChooser fileload = new JFileChooser();
+//        fileload.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//        filepath = fileload.showOpenDialog(this);
+//        if (filepath == JFileChooser.APPROVE_OPTION) {
+//            try {
+//                String filename = fileload.getSelectedFile().getName();
+//
+//                filepatch = fileload.getSelectedFile().getCanonicalPath();
+//            } catch (IOException ex) {
+//                Logger.getLogger(FrameTabel.class.getName()).log(Level.SEVERE, null, ex);//
+//            }
+//        }
         DataBase workbase = DataBase.getInstance();
-        //workbase.connectionToBase();
-        ArrayList<String[]> dataFromDbGPA = workbase.getSelectData("dies_ai");//пока передаю через AI но необходимо это исправить,чтобы принимал все параметры
+        workbase.connectionToBase();
+        ArrayList<String[]> dataFromDbGPA = workbase.getSelectData(signal);//пока передаю через AI но необходимо это исправить,чтобы принимал все параметры
         try {
             try {
                 // Тут передаем данные тестовый вызов
-                createXMLSax.addSignalesMnemo(dataFromDbGPA, "T_GPA_AI_HMI", filepatch);
+                createXMLSax.addSignalesMnemo(dataFromDbGPA,name, nameSignal, filepatch);
             } catch (IOException ex) {
                 Logger.getLogger(Main_JPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (XPathExpressionException ex) {

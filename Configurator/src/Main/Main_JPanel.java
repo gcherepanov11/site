@@ -39,14 +39,12 @@ public class Main_JPanel extends javax.swing.JFrame {
     String url, nameProject, user, pass;
     String FILENAME = "Config.xml";
     RWExcel excel = new RWExcel();
-    String path;
     DataBase DB = new DataBase();
     public String signal;
     ArrayList<String> listDropT = new ArrayList();
     XMLSAX createXMLSax = new XMLSAX();
     int filepath;
-    String filepatch, type;
-    String nameSignal, UUID_Type;
+    public String nameSignal, UUID_Type, filepatch, type, path;
 
     private final String UUIDType_AI = "5bac053cff7f4ef8a74048f428228aee";//уиды типов
     private final String UUIDType_DO = "94C521C642227325371AE7BCC36E527";
@@ -345,10 +343,12 @@ public class Main_JPanel extends javax.swing.JFrame {
                 case "dies_ai":
                     nameSignal = "T_GPA_AI";
                     UUID_Type = UUIDType_AI;
+                   
                     break;
                 case "dies_ao":
                     nameSignal = "T_GPA_AO";
                     UUID_Type = UUIDType_AO;
+                    
                     break;
                 case "dies_do":
                     nameSignal = "T_GPA_DO";

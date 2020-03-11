@@ -501,7 +501,7 @@ public class XMLSAX {
 
         Iterator<String[]> iter_arg = lisSig.iterator();
         globalpatchF = file;
-        String patchF = globalpatchF  + "AT_HMI.iec_hmi";// то есть здесь мы указываем в файл ,который надо записать,бля а сразу не сказать было,я то ебусь с тем,чтобы создать новый
+        String patchF = globalpatchF + " \\ " + "AT_HMI.iec_hmi";
         DocumentBuilderFactory document = DocumentBuilderFactory.newInstance();
         DocumentBuilder doc = document.newDocumentBuilder();
         // это из тестового метода преобразовываем файл для чтения XML
@@ -690,14 +690,7 @@ public class XMLSAX {
     // --- Запипись в файл структурой XML ---
     void writeDocument(Document document, String patchWF) throws TransformerFactoryConfigurationError, TransformerConfigurationException, TransformerException {
         try {
-            //тут в одну строку работает тоже
-            /*
-             Transformer tr = TransformerFactory.newInstance().newTransformer();
-             DOMSource source = new DOMSource(document);
-             FileOutputStream fos = new FileOutputStream("src\\WorkXML\\test.xml");
-             StreamResult result = new StreamResult(fos);//tututnfy
-             tr.transform(source, result);
-             */
+            
             File file = new File(patchWF);
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
