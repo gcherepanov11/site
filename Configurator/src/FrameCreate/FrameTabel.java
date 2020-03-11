@@ -150,7 +150,7 @@ public class FrameTabel extends Main_JPanel {
         try {
             try {
                 // Тут передаем данные тестовый вызов
-                createXMLSax.addSignalesMnemo(dataFromDbGPA,name, nameSignal, filepatch);
+                createXMLSax.addSignalesMnemo(dataFromDbGPA, nameSignal, filepatch);
             } catch (IOException ex) {
                 Logger.getLogger(Main_JPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (XPathExpressionException ex) {
