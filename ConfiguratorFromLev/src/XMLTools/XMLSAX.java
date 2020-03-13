@@ -276,7 +276,7 @@ public class XMLSAX {
         };
  
             Element GCFBtype = doc.createElement("GraphicsCompositeFBType"); // Наша основа графического элемента
-            GCFBtype.setAttribute("Name", "TGraphicsCompositeTypeTest1"); // тоже цикл с изменения доолжен быть так как по 64 элемента для аналогов
+            GCFBtype.setAttribute("Name", "TGraphicsCompositeTypeAO"); // тоже цикл с изменения доолжен быть так как по 64 элемента для аналогов
             GCFBtype.setAttribute("UUID", UUID.getUUID());
             Element InterfaceList = doc.createElement("InterfaceList");
             GCFBtype.appendChild(InterfaceList);

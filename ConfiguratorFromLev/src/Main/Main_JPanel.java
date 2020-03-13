@@ -44,14 +44,17 @@ public class Main_JPanel extends javax.swing.JFrame {
     DataBase DB = new DataBase();
     public String signal;
     ArrayList<String> listDropT = new ArrayList();
-    ReadConfigFile readConfig=new ReadConfigFile();
-    
+    ReadConfigFile readConfig = new ReadConfigFile();
+
     XMLSAX createXMLSax = new XMLSAX();
     int filepath;
     String filepatch, type;
-    String nameSignal, nameSheet, UUID_Type;
+    String nameSheet,nameSignal, UUID_Type;
 
-    private final String UUIDType_AI = "5bac053cff7f4ef8a74048f428228aee";//уиды типов
+    private final String UUIDType_AI_ToProcessing = "187F76AE49C59E950138DDA3067101D0";//уиды типов
+    private final String UUIDType_AI_Settings="668FE9B94A603427C8EDBBB8917A7594 ";
+    private final String UUID_AI_OnlyToHMI="3F156B284DE592D62F031C9791BF07EF";
+    private final String UUID_AI_FromProcessing="2318F94F4C3CEA2681DE4C8C432A66E9";
     private final String UUIDType_DO = "94C521C642227325371AE7BCC36E527";
     private final String UUIDType_DI = "A1F5648246D48275D6786689DC1498B9";
     private final String UUIDType_AO = "E02C7B0E4F1236B149113594A642B5FB";
@@ -204,7 +207,7 @@ public class Main_JPanel extends javax.swing.JFrame {
             path = file.toString();
             excel.setPatchF(path);
             try {
-                excel.readAllfile();//это всего лишь читает файл но не записыыает его
+                //  excel.readAllfile();//это всего лишь читает файл но не записыыает его
 
                 Main.fillDB(file.getPath());
             } catch (IOException ex) {
@@ -287,7 +290,8 @@ public class Main_JPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Main_JPanel mj = new Main_JPanel();
+       
+        
         JFileChooser fileload = new JFileChooser();
         fileload.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//эта строка отвечает за путь файла
         filepath = fileload.showOpenDialog(this);//эта строка отвечает за само открытие
@@ -302,32 +306,36 @@ public class Main_JPanel extends javax.swing.JFrame {
 
             switch (signal) {
                 case "dies_ai":
-                    mj.setName("T_GPA_AI_HMI");
-                    mj.setSheet("dies_ai");
 
-                    // nameSignal = "T_GPA_AI";
-                    UUID_Type = UUIDType_AI;
+                    nameSignal = "T_GPA_AI";
+                    nameSheet = "dies_ai";
+                    UUID_Type = UUIDType_AI_ToProcessing;
+
+                    
                     break;
                 case "dies_ao":
-                    mj.setName("T_GPA_AO_HMI");
-                    mj.setSheet("dies_ao");
 
-                    // nameSignal = "T_GPA_AO";
+                    nameSignal = "T_GPA_AO";
+                    nameSheet = "dies_ao";
                     UUID_Type = UUIDType_AO;
+
+                    
                     break;
                 case "dies_do":
-                    mj.setName("T_GPA_DO_HMI");
-                    mj.setSheet("dies_do");
 
-                    // nameSignal = "T_GPA_DO";
+                    nameSignal = "T_GPA_DO";
+                    nameSheet = "dies_do";
                     UUID_Type = UUIDType_DO;
+
+                    
                     break;
                 case "dies_di":
-                    mj.setName("T_GPA_DI_HMI");
-                    mj.setSheet("dies_di");
 
-                    //nameSignal = "T_GPA_DI";
+                    nameSignal = "T_GPA_DI";
+                    nameSheet = "dies_di";
                     UUID_Type = UUIDType_DI;
+
+                    
             }
 
             try {
@@ -349,18 +357,9 @@ public class Main_JPanel extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         readConfig.ReadConfig();//пытаюсь тут реализовать подключение по новым заданным(пользователем) данным
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    public void setName(String nameSignal) {
-        this.nameSignal = nameSignal;
-
-    }
-
-    public String getName() {
-     //   System.out.println(nameSignal);
-        return nameSignal;
-
-    }
 
     public void setSheet(String nameSheet) {
         this.nameSheet = nameSheet;

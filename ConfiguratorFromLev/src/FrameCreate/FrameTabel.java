@@ -33,7 +33,7 @@ public class FrameTabel extends javax.swing.JPanel {
 
     int filepath;
     String filepatch;
-    String nameSignal, nameSheet;
+    String  nameSheet;
 
     XMLSAX createXMLSax = new XMLSAX();
 
@@ -149,12 +149,12 @@ public class FrameTabel extends javax.swing.JPanel {
 
         DataBase workbase = DataBase.getInstance();
         //workbase.connectionToBase();
-        ArrayList<String[]> dataFromDbGPA = workbase.getSelectData(mj.getSheet());//пока передаю через AI но необходимо это исправить,чтобы принимал все параметры
+        ArrayList<String[]> dataFromDbGPA = workbase.getSelectData("dies_ao");//пока передаю через AI но необходимо это исправить,чтобы принимал все параметры
 
         try {
             try {
                 // Тут передаем данные тестовый вызов
-                createXMLSax.addSignalesMnemo(dataFromDbGPA, mj.getName(), filepatch);
+                createXMLSax.addSignalesMnemo(dataFromDbGPA, "GPA", filepatch);
             } catch (IOException ex) {
                 Logger.getLogger(FrameTabel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (XPathExpressionException ex) {
@@ -235,6 +235,16 @@ public class FrameTabel extends javax.swing.JPanel {
             }
         };
     }
+    
+     public void setSheet(String nameSheet) {
+        this.nameSheet = nameSheet;
+    }
+
+    public String getSheet() {
+        return nameSheet;
+    }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
